@@ -20,6 +20,7 @@ function HorizontalNavbar({ navLinks }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        zIndex: 1000,
       }}
     >
       <Grid
