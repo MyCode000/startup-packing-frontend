@@ -3,7 +3,7 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Sura, latin", // Change this to your desired font family
+    fontFamily: "Poppins, sans-serif", // Change this to your desired font family
   },
   components: {
     MuiButton: {
@@ -14,17 +14,18 @@ const theme = createTheme({
           padding: "10px 20px", // Custom padding
         },
         contained: {
-          background: "#7776B3",
+          background: "#C46A84",
           color: "#fff", // Custom text color
           "&:hover": {
-            backgroundColor: "#5A639C", // Custom hover color
+            backgroundColor: "#914e62", // Custom hover color
           },
         },
         outlined: {
-          borderColor: "#7776B3",
+          borderColor: "#C46A84",
           color: "#fff", // Custom text color to match the gradient
           "&:hover": {
-            backgroundColor: "#5A639C", // Custom hover color
+            borderColor: "#C46A84",
+            backgroundColor: "#914e62", // Custom hover color
           },
         },
       },
