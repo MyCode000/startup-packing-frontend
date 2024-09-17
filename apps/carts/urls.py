@@ -5,4 +5,5 @@ from . import handlers
 urlpatterns = [
     path("cart-handler", handlers.cart_handler),
     path("add-to-cart", handlers.add_to_cart),
+    path("remove-to-cart", handlers.remove_from_cart),
 ]

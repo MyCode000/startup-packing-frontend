@@ -1,5 +1,4 @@
 from django.db import models
-from accounts.models import User
 from cloudinary.models import CloudinaryField
 
 
@@ -25,7 +24,7 @@ class Product(models.Model):
         verbose_name="Offer Price",
         null=True,
     )
-    isOffer = models.BooleanField(verbose_name="Is Offer")
+    is_offer = models.BooleanField(verbose_name="Is Offer")
     sizes = models.ManyToManyField(Size, verbose_name="Sizes")
     isAvailable = models.BooleanField(verbose_name="Is available")
 
