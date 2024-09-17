@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 //lottie-react
 import Lottie from "lottie-react";
 //assets
-import emptyBox from "../assets/Animation/empty-box.json";
+import notFound from "../assets/Animation/not-found.json";
 
 //--------------------------------------------------
 
@@ -18,7 +18,7 @@ function Page404() {
         height: "100vh",
       }}
     >
-      <Lottie animationData={emptyBox} style={{ width: 300 }} />
+      <Lottie animationData={notFound} style={{ width: 300 }} />
       <Typography variant="h3" sx={{ mt: 2, color: "#7776B3" }}>
         Nothing Found
       </Typography>
