@@ -5,7 +5,7 @@ import heroSvg from "../../assets/images/HomePage/heroSvg2.svg";
 import box1 from "../../assets/images/HomePage/box1.png";
 import box2 from "../../assets/images/HomePage/box2.png";
 import box3 from "../../assets/images/HomePage/box3.png";
-//iconify
+// iconify
 import Iconify from "../../Components/Iconify";
 
 //------------------------------------
@@ -64,7 +64,17 @@ function HeroBanner() {
                   justifyContent: "end",
                 }}
               >
-                <Box component="img" src={box1} sx={{ width: "70%" }} />
+                <Box
+                  component="img"
+                  src={box1}
+                  sx={{
+                    width: "70%",
+                    transition: "transform 0.3s ease", // Smooth scaling transition
+                    "&:hover": {
+                      transform: "scale(1.1)", // Zoom in on hover
+                    },
+                  }}
+                />
               </Grid>
               <Grid
                 item
@@ -76,8 +86,29 @@ function HeroBanner() {
                   justifyContent: "start",
                 }}
               >
-                <Box component="img" src={box2} sx={{ width: "70%" }} />
-                <Box component="img" src={box3} sx={{ width: "70%", mt: 5 }} />
+                <Box
+                  component="img"
+                  src={box2}
+                  sx={{
+                    width: "70%",
+                    transition: "transform 0.3s ease", // Smooth scaling transition
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+                <Box
+                  component="img"
+                  src={box3}
+                  sx={{
+                    width: "70%",
+                    mt: 5,
+                    transition: "transform 0.3s ease", // Smooth scaling transition
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
               </Grid>
             </Grid>
           </Box>

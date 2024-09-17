@@ -11,7 +11,7 @@ function CapabilitiesCard({ icon, title, content }) {
         display: "flex",
         borderRadius: 5,
         p: 3,
-        cursor: "pointer",
+        cursor: "default",
         transition: "transform 0.3s, box-shadow 0.3s", // Smooth transition
         "&:hover": {
           transform: "scale(1.05)", // Slightly increase the size

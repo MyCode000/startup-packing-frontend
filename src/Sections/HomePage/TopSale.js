@@ -1,13 +1,35 @@
-import React from "react";
+//react
+import React, { useCallback, useEffect, useState } from "react";
+//MUI
 import { Box, Typography } from "@mui/material";
+//splide
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css"; // Import Splide CSS
+//component
 import TopSaleCard from "../../Components/__homepage/TopSaleCard";
+//__api__
+import { fetchProductsRequest } from "../../__api__/products";
 
 //-------------------------------------------------------
 
 function TopSale() {
-  const cards = [1, 2, 3, 4, 5]; // Array to simulate 5 cards
+  const [topSaleData, setTopSaleData] = useState();
+
+  // Fetch TopSale data
+  const fetchTopSaleData = useCallback(async () => {
+    fetchProductsRequest()
+      .then((response) => {
+        setTopSaleData(response.slice(0, 5)); // Limit to the first 5 items
+      })
+      .catch((error) => {
+        console.error("Error fetching TopSale", error);
+      });
+  }, []);
+
+  // Fetch data on mount
+  useEffect(() => {
+    fetchTopSaleData();
+  }, []);
 
   return (
     <Box sx={{ my: 10, px: { xs: 2, md: 5 } }}>
@@ -38,10 +60,10 @@ function TopSale() {
           },
         }}
       >
-        {cards.map((_, index) => (
+        {topSaleData?.map((topSale, index) => (
           <SplideSlide key={index}>
             <Box sx={{ py: 5 }}>
-              <TopSaleCard />
+              <TopSaleCard product={topSale} />
             </Box>
           </SplideSlide>
         ))}

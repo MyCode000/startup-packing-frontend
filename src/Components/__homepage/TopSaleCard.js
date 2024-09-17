@@ -26,17 +26,18 @@ function TopSaleCard({ product }) {
     >
       <Box
         component="img"
-        src={cupCake}
+        src={product.images[0].image}
         sx={{
           width: "90%",
           borderRadius: 10,
+          height: 300,
         }}
       />
       <Typography variant="h5" sx={{ mt: 1 }}>
-        White cup cake case
+        {product.name}
       </Typography>
       <Typography variant="h6" sx={{ mb: 1 }}>
-        150 EGP
+        {product.price} EGP
       </Typography>
       <Button variant="contained" startIcon={<Iconify icon="raphael:cart" />}>
         Add to cart
