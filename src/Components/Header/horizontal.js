@@ -16,6 +16,7 @@ function HorizontalNavbar({ navLinks }) {
       sx={{
         bgcolor: "#dc92a3",
         position: "fixed",
+        top: 0,
         height: 60,
         display: "flex",
         justifyContent: "space-between",

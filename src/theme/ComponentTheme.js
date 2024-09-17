@@ -3,7 +3,22 @@ import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "Poppins, sans-serif", // Change this to your desired font family
+    fontFamily: '"Poppins", sans-serif', // Change this to your desired font family
+    h1: { fontWeight: "bolder" },
+    h2: { fontWeight: "bolder" },
+    h3: { fontWeight: "bolder" },
+  },
+  palette: {
+    primary: {
+      main: "#C46A84", // Primary color
+      dark: "#914e62",
+    },
+    secondary: {
+      main: "#DC92A3ff", // Secondary color
+    },
+    text: {
+      primary: "#DC92A3ff", // Set default text color
+    },
   },
   components: {
     MuiButton: {

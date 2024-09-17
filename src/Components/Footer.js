@@ -1,16 +1,22 @@
 //MUI
 import { Box } from "@mui/material";
 //assets
-import masterCard from "../assets/images/masterCard.png";
-import visa from "../assets/images/visa.png";
-import miza from "../assets/images/miza.png";
+import masterCard from "../assets/images/Footer/masterCard.png";
+import visa from "../assets/images/Footer/visa.png";
+import miza from "../assets/images/Footer/miza.png";
 import Iconify from "./Iconify";
 
 //-------------------------------------------------------------
 
 function Footer() {
   return (
-    <Box sx={{ width: "100%", bgcolor: "#dc92a3", pb: 2 }}>
+    <Box
+      sx={{
+        width: "100%",
+        bgcolor: "#dc92a3",
+        pb: 2,
+      }}
+    >
       <Box
         sx={{
           width: "100%",
@@ -47,7 +53,7 @@ function Footer() {
           my: 2,
           mx: 5,
           py: 1,
-          bgcolor: "#C46A84",
+          bgcolor: "primary.main",
           borderRadius: 10,
           display: "flex",
           justifyContent: "center",
