@@ -31,6 +31,7 @@ export default function Router() {
       children: [
         { path: PATH_SITE.home, element: <HomePage /> },
         { path: PATH_SITE.products, element: <ProductsPage /> },
+        { path: PATH_SITE.contact, element: <ContactPage /> },
       ],
     },
     //Auth
@@ -58,6 +59,8 @@ export default function Router() {
 const HomePage = Loadable(lazy(() => import("../Pages/HomePage")));
 // -- Products
 const ProductsPage = Loadable(lazy(() => import("../Pages/ProductsPage")));
+// -- Contact
+const ContactPage = Loadable(lazy(() => import("../Pages/ContactPage")));
 
 // auth
 // -- Login

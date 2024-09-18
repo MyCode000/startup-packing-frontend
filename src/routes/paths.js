@@ -17,4 +17,5 @@ export const PATH_AUTH = {
 export const PATH_SITE = {
   home: "/home",
   products: "/products",
+  contact: "/contact-us",
 };

@@ -24,7 +24,7 @@ const AlertComponent = () => {
       <Box
         sx={{
           width: "100%",
-          bgcolor: alert.isSuccess ? "#06D001" : "red",
+          bgcolor: alert.isSuccess ? "primary.main" : "red",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -42,7 +42,9 @@ const AlertComponent = () => {
             mr: 1,
           }}
         />
-        <Typography variant="h6">{alert.message}</Typography>
+        <Typography variant="h6" sx={{ color: "black" }}>
+          {alert.message}
+        </Typography>
       </Box>
     </Snackbar>
   );
