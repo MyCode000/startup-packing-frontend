@@ -18,6 +18,7 @@ import Iconify from "../Iconify";
 import { useNavigate } from "react-router-dom";
 //react
 import { useState } from "react";
+import { PATH_AUTH } from "../../routes/paths";
 
 function VerticalDrawer({ navLinks }) {
   const navigate = useNavigate();
@@ -71,10 +72,14 @@ function VerticalDrawer({ navLinks }) {
             ))}
           </List>
           <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button variant="contained" sx={{ mr: 1 }}>
+            <Button href={PATH_AUTH.login} variant="contained" sx={{ mr: 1 }}>
               Login
             </Button>
-            <Button variant="outlined" sx={{ color: "black" }}>
+            <Button
+              href={PATH_AUTH.signUp}
+              variant="outlined"
+              sx={{ color: "black" }}
+            >
               Sign up
             </Button>
           </Box>

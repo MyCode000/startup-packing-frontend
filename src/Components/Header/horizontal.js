@@ -4,6 +4,7 @@ import { Avatar, Button, Grid, Typography } from "@mui/material";
 import companyLogo from "../../assets/companyLogo.png";
 //react-router-dom
 import { useNavigate } from "react-router-dom";
+import { PATH_AUTH } from "../../routes/paths";
 
 //---------------------------------------------
 
@@ -69,8 +70,12 @@ function HorizontalNavbar({ navLinks }) {
           alignItems: "center",
         }}
       >
-        <Button variant="contained">Login</Button>
-        <Button variant="outlined">Sign up</Button>
+        <Button href={PATH_AUTH.login} variant="contained">
+          Login
+        </Button>
+        <Button href={PATH_AUTH.signUp} variant="outlined">
+          Sign up
+        </Button>
       </Grid>
     </Grid>
   );
