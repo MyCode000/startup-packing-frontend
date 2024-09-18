@@ -8,6 +8,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Tooltip,
   Typography,
 } from "@mui/material";
 // assets
@@ -18,9 +19,9 @@ import Iconify from "../Iconify";
 import { useNavigate } from "react-router-dom";
 //react
 import { useState } from "react";
-import { PATH_AUTH } from "../../routes/paths";
+import { PATH_AUTH, PATH_SITE } from "../../routes/paths";
 
-function VerticalDrawer({ navLinks }) {
+function VerticalDrawer({ navLinks, user }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -71,18 +72,34 @@ function VerticalDrawer({ navLinks }) {
               </ListItem>
             ))}
           </List>
-          <Box sx={{ textAlign: "center", mt: 2 }}>
-            <Button href={PATH_AUTH.login} variant="contained" sx={{ mr: 1 }}>
-              Login
-            </Button>
-            <Button
-              href={PATH_AUTH.signUp}
-              variant="outlined"
-              sx={{ color: "black" }}
-            >
-              Sign up
-            </Button>
-          </Box>
+          {user && (
+            <Box>
+              <Tooltip title="cart">
+                <IconButton href={PATH_SITE.cart}>
+                  <Iconify icon="raphael:cart" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="logout">
+                <IconButton>
+                  <Iconify icon="material-symbols-light:logout" />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          )}
+          {!user && (
+            <Box sx={{ textAlign: "center", mt: 2 }}>
+              <Button href={PATH_AUTH.login} variant="contained" sx={{ mr: 1 }}>
+                Login
+              </Button>
+              <Button
+                href={PATH_AUTH.signUp}
+                variant="outlined"
+                sx={{ color: "black" }}
+              >
+                Sign up
+              </Button>
+            </Box>
+          )}
         </Box>
       </Drawer>
     </Box>

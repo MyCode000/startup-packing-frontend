@@ -1,14 +1,22 @@
 //MUI
-import { Avatar, Button, Grid, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Grid,
+  IconButton,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 //assets
 import companyLogo from "../../assets/companyLogo.png";
 //react-router-dom
 import { useNavigate } from "react-router-dom";
-import { PATH_AUTH } from "../../routes/paths";
+import { PATH_AUTH, PATH_SITE } from "../../routes/paths";
+import Iconify from "../Iconify";
 
 //---------------------------------------------
 
-function HorizontalNavbar({ navLinks }) {
+function HorizontalNavbar({ navLinks, user }) {
   const navigate = useNavigate();
 
   return (
@@ -61,22 +69,49 @@ function HorizontalNavbar({ navLinks }) {
           </Typography>
         ))}
       </Grid>
-      <Grid
-        item
-        md={2}
-        sx={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <Button href={PATH_AUTH.login} variant="contained">
-          Login
-        </Button>
-        <Button href={PATH_AUTH.signUp} variant="outlined">
-          Sign up
-        </Button>
-      </Grid>
+      {user && (
+        <Grid
+          item
+          md={2}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Tooltip title="cart">
+            <IconButton href={PATH_SITE.cart}>
+              <Iconify icon="raphael:cart" sx={{ color: "white" }} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="logout">
+            <IconButton>
+              <Iconify
+                icon="material-symbols-light:logout"
+                sx={{ color: "white" }}
+              />
+            </IconButton>
+          </Tooltip>
+        </Grid>
+      )}
+      {!user && (
+        <Grid
+          item
+          md={2}
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <Button href={PATH_AUTH.login} variant="contained">
+            Login
+          </Button>
+          <Button href={PATH_AUTH.signUp} variant="outlined">
+            Sign up
+          </Button>
+        </Grid>
+      )}
     </Grid>
   );
 }

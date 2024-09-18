@@ -2,12 +2,22 @@
 import { Box, Button, Card, Typography } from "@mui/material";
 // iconify
 import Iconify from "../Iconify";
+//
 import { useNavigate } from "react-router-dom";
-import { PATH_SITE } from "../../../src/routes/paths";
-
+//path
+import { PATH_SITE } from "../../routes/paths";
+//react
+import { useCallback } from "react";
+//__api__
+import { addToCartRequest } from "../../__api__/cart";
+//recoil
+import { useSetRecoilState } from "recoil";
+import alertAtom from "../../recoil/atoms/alertAtom";
 //-------------------------------------------------------
 
 function ProductCard({ product }) {
+  const triggerAlert = useSetRecoilState(alertAtom);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -16,9 +26,27 @@ function ProductCard({ product }) {
     });
   };
 
+  const addToCart = useCallback(async () => {
+    addToCartRequest({ product_id: product.id })
+      .then((response) => {
+        triggerAlert({
+          isOpen: true,
+          isSuccess: true,
+          message: "Item added to cart",
+        });
+      })
+      .catch((error) => {
+        triggerAlert({
+          isOpen: true,
+          isSuccess: false,
+          message: "Some thing went wrong",
+        });
+        console.error("Error add to Cart", error);
+      });
+  }, []);
+
   return (
     <Card
-      onClick={handleClick}
       sx={{
         p: 1,
         bgcolor: "#F1F1F1",
@@ -37,6 +65,7 @@ function ProductCard({ product }) {
       }}
     >
       <Box
+        onClick={handleClick}
         component="img"
         src={product.images[0].image}
         sx={{
@@ -51,7 +80,11 @@ function ProductCard({ product }) {
       <Typography variant="h6" sx={{ mb: 1 }}>
         {product.price} EGP
       </Typography>
-      <Button variant="contained" startIcon={<Iconify icon="raphael:cart" />}>
+      <Button
+        onClick={addToCart}
+        variant="contained"
+        startIcon={<Iconify icon="raphael:cart" />}
+      >
         Add to cart
       </Button>
     </Card>

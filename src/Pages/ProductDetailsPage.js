@@ -7,16 +7,24 @@ import {
   Avatar,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Iconify from "../Components/Iconify";
 import TopSale from "../Sections/HomePage/TopSale";
+//__api__
+import { addToCartRequest } from "../__api__/cart";
+//recoil
+import { useSetRecoilState } from "recoil";
+import alertAtom from "../recoil/atoms/alertAtom";
+
+//-------------------------------------------------------------------------------------------
 
 function ProductDetailsPage() {
   const location = useLocation();
   const { product } = location.state || {}; // Access the product from state
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const triggerAlert = useSetRecoilState(alertAtom);
 
   // Function to handle image change
   const handleNextImage = () => {
@@ -31,6 +39,25 @@ function ProductDetailsPage() {
         (prevIndex - 1 + product.images.length) % product.images.length
     );
   };
+
+  const addToCart = useCallback(async () => {
+    addToCartRequest({ product_id: product.id })
+      .then((response) => {
+        triggerAlert({
+          isOpen: true,
+          isSuccess: true,
+          message: "Item added to cart",
+        });
+      })
+      .catch((error) => {
+        triggerAlert({
+          isOpen: true,
+          isSuccess: false,
+          message: "Some thing went wrong",
+        });
+        console.error("Error add to Cart", error);
+      });
+  }, []);
 
   return (
     <Box sx={{ my: 10, px: 2 }}>
@@ -100,6 +127,7 @@ function ProductDetailsPage() {
 
           {/* Add to Cart Button */}
           <Button
+            onClick={addToCart}
             variant="contained"
             color="primary"
             sx={{ mt: 4, width: "100%", py: 2 }}
