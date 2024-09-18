@@ -19,4 +19,5 @@ export const PATH_SITE = {
   products: "/products",
   productDetails: "/product-details",
   contact: "/contact-us",
+  about: "/about-us",
 };

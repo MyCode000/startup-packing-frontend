@@ -33,6 +33,7 @@ export default function Router() {
         { path: PATH_SITE.products, element: <ProductsPage /> },
         { path: PATH_SITE.productDetails, element: <ProductDetailsPage /> },
         { path: PATH_SITE.contact, element: <ContactPage /> },
+        { path: PATH_SITE.about, element: <AboutPage /> },
       ],
     },
     //Auth
@@ -66,6 +67,8 @@ const ProductDetailsPage = Loadable(
 );
 // -- Contact
 const ContactPage = Loadable(lazy(() => import("../Pages/ContactPage")));
+// -- About
+const AboutPage = Loadable(lazy(() => import("../Pages/AboutPage")));
 
 // auth
 // -- Login
