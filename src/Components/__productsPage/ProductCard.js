@@ -2,11 +2,23 @@
 import { Box, Button, Card, Typography } from "@mui/material";
 // iconify
 import Iconify from "../Iconify";
+import { useNavigate } from "react-router-dom";
+import { PATH_SITE } from "../../../src/routes/paths";
+
 //-------------------------------------------------------
 
 function ProductCard({ product }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(PATH_SITE.productDetails, {
+      state: { product }, // Pass the product as state
+    });
+  };
+
   return (
     <Card
+      onClick={handleClick}
       sx={{
         p: 1,
         bgcolor: "#F1F1F1",
@@ -16,6 +28,7 @@ function ProductCard({ product }) {
         alignItems: "center",
         borderRadius: 10,
         width: "100%",
+        cursor: "pointer",
         transition: "transform 0.3s, box-shadow 0.3s",
         "&:hover": {
           transform: "scale(1.05)",

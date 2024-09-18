@@ -31,6 +31,7 @@ export default function Router() {
       children: [
         { path: PATH_SITE.home, element: <HomePage /> },
         { path: PATH_SITE.products, element: <ProductsPage /> },
+        { path: PATH_SITE.productDetails, element: <ProductDetailsPage /> },
         { path: PATH_SITE.contact, element: <ContactPage /> },
       ],
     },
@@ -59,6 +60,10 @@ export default function Router() {
 const HomePage = Loadable(lazy(() => import("../Pages/HomePage")));
 // -- Products
 const ProductsPage = Loadable(lazy(() => import("../Pages/ProductsPage")));
+// -- ProductDetails
+const ProductDetailsPage = Loadable(
+  lazy(() => import("../Pages/ProductDetailsPage"))
+);
 // -- Contact
 const ContactPage = Loadable(lazy(() => import("../Pages/ContactPage")));
 

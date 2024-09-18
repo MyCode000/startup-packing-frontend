@@ -12,7 +12,7 @@ import { fetchProductsRequest } from "../../__api__/products";
 
 //-------------------------------------------------------
 
-function TopSale() {
+function TopSale({ isDetails }) {
   const [topSaleData, setTopSaleData] = useState();
 
   // Fetch TopSale data
@@ -33,16 +33,20 @@ function TopSale() {
 
   return (
     <Box sx={{ my: 10, px: { xs: 2, md: 5 } }}>
-      <Typography
-        sx={{
-          textAlign: "center",
-          mb: { xs: 2, md: 3 },
-          fontSize: { xs: "3rem", sm: "4rem", md: "6rem" }, // h3-like size for xs, h1-like for md
-          fontWeight: "bold", // Adjust font weight as per your h1/h3 styling
-        }}
-      >
-        Choose your Packing
-      </Typography>
+      {isDetails ? (
+        <Typography variant="h4">You can also buy from our best</Typography>
+      ) : (
+        <Typography
+          sx={{
+            textAlign: "center",
+            mb: { xs: 2, md: 3 },
+            fontSize: { xs: "3rem", sm: "4rem", md: "6rem" }, // h3-like size for xs, h1-like for md
+            fontWeight: "bold", // Adjust font weight as per your h1/h3 styling
+          }}
+        >
+          Choose your Packing
+        </Typography>
+      )}
 
       <Splide
         aria-label="Top Sale Products"
