@@ -4,7 +4,7 @@ import { Box, Button, Card, Typography } from "@mui/material";
 import Iconify from "../Iconify";
 //-------------------------------------------------------
 
-function TopSaleCard({ product }) {
+function ProductCard({ product }) {
   return (
     <Card
       sx={{
@@ -15,7 +15,7 @@ function TopSaleCard({ product }) {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 10,
-        width: "80%",
+        width: "100%",
         transition: "transform 0.3s, box-shadow 0.3s",
         "&:hover": {
           transform: "scale(1.05)",
@@ -29,7 +29,7 @@ function TopSaleCard({ product }) {
         sx={{
           width: "90%",
           borderRadius: 10,
-          height: 300,
+          height: 200,
         }}
       />
       <Typography variant="h5" sx={{ mt: 1 }}>
@@ -45,4 +45,4 @@ function TopSaleCard({ product }) {
   );
 }
 
-export default TopSaleCard;
+export default ProductCard;

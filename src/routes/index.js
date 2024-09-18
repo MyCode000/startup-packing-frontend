@@ -28,7 +28,10 @@ export default function Router() {
     {
       path: "/",
       element: <SiteLayout />,
-      children: [{ path: PATH_SITE.home, element: <HomePage /> }],
+      children: [
+        { path: PATH_SITE.home, element: <HomePage /> },
+        { path: PATH_SITE.products, element: <ProductsPage /> },
+      ],
     },
     //Auth
     {
@@ -50,9 +53,11 @@ export default function Router() {
     { path: "*", element: <Navigate to="/404" replace /> },
   ]);
 }
-//overview
+
 // -- Home
 const HomePage = Loadable(lazy(() => import("../Pages/HomePage")));
+// -- Products
+const ProductsPage = Loadable(lazy(() => import("../Pages/ProductsPage")));
 
 // auth
 // -- Login
