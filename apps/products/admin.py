@@ -12,6 +12,7 @@ class ImagesForm(forms.ModelForm):
 class ImagesInline(admin.TabularInline):
     model = models.Images
     form = ImagesForm
+    extra = 1
 
 
 @admin.register(models.Product)

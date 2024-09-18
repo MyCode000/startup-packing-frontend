@@ -26,7 +26,8 @@ class Product(models.Model):
     )
     is_offer = models.BooleanField(verbose_name="Is Offer")
     sizes = models.ManyToManyField(Size, verbose_name="Sizes")
-    isAvailable = models.BooleanField(verbose_name="Is available")
+    is_available = models.BooleanField(verbose_name="Is available")
+    sale_rate = models.IntegerField(verbose_name="Sale Rate", default=0)
 
     timestamp = models.DateTimeField(
         null=True, auto_now_add=True, verbose_name="Timestamp"

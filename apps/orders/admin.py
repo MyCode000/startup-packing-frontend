@@ -12,6 +12,7 @@ class OrderProductsListForm(forms.ModelForm):
 class OrderProductsListInline(admin.TabularInline):
     model = models.OrderProductsList
     form = OrderProductsListForm
+    extra = 1
 
 
 @admin.register(models.Order)
