@@ -5,7 +5,7 @@ import Iconify from "../Iconify";
 //
 import { useNavigate } from "react-router-dom";
 //path
-import { PATH_SITE } from "../../routes/paths";
+import { PATH_AUTH, PATH_SITE } from "../../routes/paths";
 //react
 import { useCallback } from "react";
 //__api__
@@ -36,11 +36,20 @@ function ProductCard({ product }) {
         });
       })
       .catch((error) => {
-        triggerAlert({
-          isOpen: true,
-          isSuccess: false,
-          message: "Some thing went wrong",
-        });
+        if (error.response.status === 401) {
+          triggerAlert({
+            isOpen: true,
+            isSuccess: false,
+            message: "You should login first",
+          });
+          navigate(PATH_AUTH.login);
+        } else {
+          triggerAlert({
+            isOpen: true,
+            isSuccess: false,
+            message: "Something went wrong",
+          });
+        }
         console.error("Error add to Cart", error);
       });
   }, []);

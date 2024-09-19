@@ -13,11 +13,63 @@ import companyLogo from "../../assets/companyLogo.png";
 import { useNavigate } from "react-router-dom";
 import { PATH_AUTH, PATH_SITE } from "../../routes/paths";
 import Iconify from "../Iconify";
+import { useCallback } from "react";
 
 //---------------------------------------------
 
-function HorizontalNavbar({ navLinks, user }) {
+function HorizontalNavbar({ navLinks, user, logout }) {
   const navigate = useNavigate();
+
+  const handelCartView = useCallback(() => {
+    let context;
+    if (user) {
+      context = (
+        <Grid
+          item
+          md={2}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Tooltip title="cart">
+            <IconButton href={PATH_SITE.cart}>
+              <Iconify icon="raphael:cart" sx={{ color: "white" }} />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="logout">
+            <IconButton onClick={logout}>
+              <Iconify
+                icon="material-symbols-light:logout"
+                sx={{ color: "white" }}
+              />
+            </IconButton>
+          </Tooltip>
+        </Grid>
+      );
+    } else {
+      context = (
+        <Grid
+          item
+          md={2}
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <Button href={PATH_AUTH.login} variant="contained">
+            Login
+          </Button>
+          <Button href={PATH_AUTH.signUp} variant="outlined">
+            Sign up
+          </Button>
+        </Grid>
+      );
+    }
+    return context;
+  }, [logout, user]);
 
   return (
     <Grid
@@ -69,7 +121,8 @@ function HorizontalNavbar({ navLinks, user }) {
           </Typography>
         ))}
       </Grid>
-      {user && (
+      {handelCartView()}
+      {/* {user && (
         <Grid
           item
           md={2}
@@ -85,7 +138,7 @@ function HorizontalNavbar({ navLinks, user }) {
             </IconButton>
           </Tooltip>
           <Tooltip title="logout">
-            <IconButton>
+            <IconButton onClick={logout}>
               <Iconify
                 icon="material-symbols-light:logout"
                 sx={{ color: "white" }}
@@ -111,7 +164,7 @@ function HorizontalNavbar({ navLinks, user }) {
             Sign up
           </Button>
         </Grid>
-      )}
+      )} */}
     </Grid>
   );
 }

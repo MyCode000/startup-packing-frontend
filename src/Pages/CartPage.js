@@ -22,6 +22,8 @@ import {
 import { useSetRecoilState } from "recoil";
 import alertAtom from "../recoil/atoms/alertAtom";
 import CheckuotPopUp from "../Components/__cartPage/CheckoutPopUp";
+import { PATH_SITE } from "../routes/paths";
+import { useNavigate } from "react-router-dom";
 
 //-----------------------------------------------------------------------
 
@@ -29,6 +31,7 @@ function CartPage() {
   const triggerAlert = useSetRecoilState(alertAtom);
   const [cartData, setCartData] = useState();
   const [checkoutPopUp, triggerCheckoutPopUp] = useState(false);
+  const navigate = useNavigate();
 
   const fetchCartData = useCallback(async () => {
     fetchCartRequest()
@@ -36,6 +39,20 @@ function CartPage() {
         setCartData(response);
       })
       .catch((error) => {
+        if (error.response.status === 401) {
+          triggerAlert({
+            isOpen: true,
+            isSuccess: false,
+            message: "You should login first",
+          });
+          navigate(PATH_SITE.home);
+        } else {
+          triggerAlert({
+            isOpen: true,
+            isSuccess: false,
+            message: "Something went wrong",
+          });
+        }
         console.error("Error fetching Cart", error);
       });
   }, []);

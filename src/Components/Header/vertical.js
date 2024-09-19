@@ -18,16 +18,52 @@ import Iconify from "../Iconify";
 //react-router-dom
 import { useNavigate } from "react-router-dom";
 //react
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { PATH_AUTH, PATH_SITE } from "../../routes/paths";
 
-function VerticalDrawer({ navLinks, user }) {
+function VerticalDrawer({ navLinks, user, logout }) {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (state) => () => {
     setOpen(state);
   };
+
+  const handelCartView = useCallback(() => {
+    let context;
+    if (user) {
+      context = (
+        <Box>
+          <Tooltip title="cart">
+            <IconButton href={PATH_SITE.cart}>
+              <Iconify icon="raphael:cart" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="logout">
+            <IconButton onClick={logout}>
+              <Iconify icon="material-symbols-light:logout" />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      );
+    } else {
+      context = (
+        <Box sx={{ textAlign: "center", mt: 2 }}>
+          <Button href={PATH_AUTH.login} variant="contained" sx={{ mr: 1 }}>
+            Login
+          </Button>
+          <Button
+            href={PATH_AUTH.signUp}
+            variant="outlined"
+            sx={{ color: "black" }}
+          >
+            Sign up
+          </Button>
+        </Box>
+      );
+    }
+    return context;
+  }, [logout, user]);
 
   return (
     <Box>
@@ -72,7 +108,8 @@ function VerticalDrawer({ navLinks, user }) {
               </ListItem>
             ))}
           </List>
-          {user && (
+          {handelCartView()}
+          {/* {user && (
             <Box>
               <Tooltip title="cart">
                 <IconButton href={PATH_SITE.cart}>
@@ -80,7 +117,7 @@ function VerticalDrawer({ navLinks, user }) {
                 </IconButton>
               </Tooltip>
               <Tooltip title="logout">
-                <IconButton>
+                <IconButton onClick={logout}>
                   <Iconify icon="material-symbols-light:logout" />
                 </IconButton>
               </Tooltip>
@@ -99,7 +136,7 @@ function VerticalDrawer({ navLinks, user }) {
                 Sign up
               </Button>
             </Box>
-          )}
+          )} */}
         </Box>
       </Drawer>
     </Box>
