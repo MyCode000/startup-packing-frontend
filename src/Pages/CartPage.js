@@ -21,17 +21,20 @@ import {
 //recoil
 import { useSetRecoilState } from "recoil";
 import alertAtom from "../recoil/atoms/alertAtom";
+import CheckuotPopUp from "../Components/__cartPage/CheckoutPopUp";
 
 //-----------------------------------------------------------------------
 
 function CartPage() {
   const triggerAlert = useSetRecoilState(alertAtom);
   const [cartData, setCartData] = useState();
+  const [checkoutPopUp, triggerCheckoutPopUp] = useState(false);
 
   const fetchCartData = useCallback(async () => {
     fetchCartRequest()
       .then((response) => {
         setCartData(response);
+        console.log(response);
       })
       .catch((error) => {
         console.error("Error fetching Cart", error);
@@ -40,7 +43,7 @@ function CartPage() {
 
   useEffect(() => {
     fetchCartData();
-  }, [fetchCartData]);
+  }, []);
 
   const handleIncreaseQuantity = (productId) => {
     addToCart(productId);
@@ -81,6 +84,10 @@ function CartPage() {
         console.error("Error remove from Cart", error);
       });
   }, []);
+
+  const openCheckoutPopUp = useCallback(async () => {
+    triggerCheckoutPopUp(true);
+  }, [cartData, fetchCartData]);
 
   return (
     <Box sx={{ my: { xs: 5, md: 15 } }}>
@@ -166,12 +173,22 @@ function CartPage() {
             <Typography variant="h5">
               Total Price: ${cartData.total_Price}
             </Typography>
-            <Button variant="contained" sx={{ mt: 2 }}>
+            <Button
+              onClick={openCheckoutPopUp}
+              variant="contained"
+              sx={{ mt: 2 }}
+            >
               Proceed to Checkout
             </Button>
           </Box>
         </Box>
       )}
+      <CheckuotPopUp
+        isTriggered={checkoutPopUp}
+        closeHandler={() => triggerCheckoutPopUp(false)}
+        cartData={cartData}
+        updateHandler={fetchCartData}
+      />
     </Box>
   );
 }
