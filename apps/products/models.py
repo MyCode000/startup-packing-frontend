@@ -33,6 +33,9 @@ class Product(models.Model):
         null=True, auto_now_add=True, verbose_name="Timestamp"
     )
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"

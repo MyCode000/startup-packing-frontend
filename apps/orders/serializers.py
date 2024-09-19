@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from . import models
 from products.serializers import ProductSerializer
+from accounts.serializers import UserSerializer
 
 
 class OrderProductsListSerializer(ModelSerializer):
@@ -13,6 +14,7 @@ class OrderProductsListSerializer(ModelSerializer):
 
 class OrderSerializer(ModelSerializer):
     Order_products_list = OrderProductsListSerializer(many=True, read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = models.Order

@@ -12,7 +12,7 @@ from rest_framework.decorators import (
 @permission_classes([])
 @authentication_classes([])
 def send_mail(request):
-    name = request.data.get("Name")
+    name = request.data.get("name")
     email = request.data.get("email")
     phone_number = request.data.get("phone_number")
     message = request.data.get("message")

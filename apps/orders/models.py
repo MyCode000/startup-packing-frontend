@@ -15,9 +15,19 @@ class Order(models.Model):
     payment_method = models.CharField(
         max_length=100,
         verbose_name="Payment Method",
-        choices=(("wallet", "Wallet"), ("intsapay", "Insta Pay")),
+        choices=(("wallet", "Wallet"), ("instapay", "Insta Pay")),
     )
     payment_image = CloudinaryField("payment_image")
+    address = models.CharField(
+        max_length=200,
+        verbose_name="Address",
+        null=True,
+    )
+    phone_number = models.CharField(
+        max_length=100,
+        verbose_name="Phone number",
+        null=True,
+    )
 
     timestamp = models.DateTimeField(
         null=True, auto_now_add=True, verbose_name="Timestamp"

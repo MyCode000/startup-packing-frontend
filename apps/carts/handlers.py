@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404
 def cart_handler(request):
     user = request.user
 
-    cart = models.Cart.objects.filter(user=user).order_by("-timestamp")
+    cart = get_object_or_404(models.Cart, user=user)
     serializer = serializers.CartSerializer(cart)
 
     return Response(status=status.HTTP_200_OK, data=serializer.data)
@@ -65,7 +65,7 @@ def add_to_cart(request):
 
     # Recalculate total price
     total_price = sum(
-        (p.offer_price if p.isOffer else p.price) * pl.amount
+        (p.offer_price if p.is_offer else p.price) * pl.amount
         for pl in cart.cart_products_list.all()
         for p in pl.products.all()
     )
@@ -126,8 +126,8 @@ def remove_from_cart(request):
         product_list.save()
 
     total_price = sum(
-        (p.offer_price if p.isOffer else p.price) * pl.amount
-        for pl in cart.products_list.all()
+        (p.offer_price if p.is_offer else p.price) * pl.amount
+        for pl in cart.cart_products_list.all()
         for p in pl.products.all()
     )
     cart.total_Price = total_price
