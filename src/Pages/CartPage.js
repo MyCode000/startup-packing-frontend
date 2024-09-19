@@ -34,7 +34,6 @@ function CartPage() {
     fetchCartRequest()
       .then((response) => {
         setCartData(response);
-        console.log(response);
       })
       .catch((error) => {
         console.error("Error fetching Cart", error);
