@@ -45,6 +45,22 @@ function CustomDesignPage() {
   const [color, setColor] = useState("#ffffff"); // Default color
   const [logoDataUri, setLogoDataUri] = useState(null);
 
+  // Function to convert image to base64 string (image bytes)
+  const handleFileConversion = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        // Extract MIME type from result and include it in base64 string
+        const base64String = reader.result;
+        const base64Data = base64String.split(",")[1]; // Remove the data URL prefix
+        const mimeType = base64String.split(":")[1].split(";")[0]; // Extract MIME type
+        resolve(`data:${mimeType};base64,${base64Data}`);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   const formik = useFormik({
     initialValues: {
       shape: "",
@@ -105,16 +121,18 @@ function CustomDesignPage() {
     setColor(color.hex);
   };
 
-  const handleLogoUpload = (event) => {
+  const handleLogoUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
       // Read file as Data URI
+      const logo = await handleFileConversion(file);
+      setFieldValue("logo", logo);
+
       const reader = new FileReader();
       reader.onload = () => {
         setLogoDataUri(reader.result);
       };
       reader.readAsDataURL(file);
-      setFieldValue("logo", file);
     }
   };
 
