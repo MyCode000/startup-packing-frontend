@@ -31,7 +31,7 @@ function VerticalDrawer({ navLinks, user, logout }) {
 
   const handelCartView = useCallback(() => {
     let context;
-    if (user) {
+    if (localStorage.getItem("access_token")) {
       context = (
         <Box>
           <Tooltip title="cart">

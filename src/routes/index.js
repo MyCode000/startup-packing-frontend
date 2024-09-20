@@ -35,6 +35,7 @@ export default function Router() {
         { path: PATH_SITE.contact, element: <ContactPage /> },
         { path: PATH_SITE.about, element: <AboutPage /> },
         { path: PATH_SITE.cart, element: <CartPage /> },
+        { path: PATH_SITE.customDesign, element: <CustomDesignPage /> },
       ],
     },
     //Auth
@@ -72,6 +73,10 @@ const ContactPage = Loadable(lazy(() => import("../Pages/ContactPage")));
 const AboutPage = Loadable(lazy(() => import("../Pages/AboutPage")));
 // -- Cart
 const CartPage = Loadable(lazy(() => import("../Pages/CartPage")));
+// -- CustomDesign
+const CustomDesignPage = Loadable(
+  lazy(() => import("../Pages/CustomDesignPage"))
+);
 
 // auth
 // -- Login

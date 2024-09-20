@@ -7,6 +7,7 @@ import box2 from "../../assets/images/HomePage/box2.png";
 import box3 from "../../assets/images/HomePage/box3.png";
 // iconify
 import Iconify from "../../Components/Iconify";
+import { PATH_SITE } from "../../routes/paths";
 
 //------------------------------------
 
@@ -36,6 +37,7 @@ function HeroBanner() {
             <Typography variant="h3">Tailored solutions</Typography>
             <Typography variant="h3">crafted for your brand.</Typography>
             <Button
+              href={PATH_SITE.products}
               variant="contained"
               sx={{ mt: 2 }}
               endIcon={<Iconify icon="ri:shopping-bag-line" />}

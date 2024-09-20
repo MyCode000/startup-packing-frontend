@@ -22,7 +22,7 @@ function HorizontalNavbar({ navLinks, user, logout }) {
 
   const handelCartView = useCallback(() => {
     let context;
-    if (user) {
+    if (localStorage.getItem("access_token")) {
       context = (
         <Grid
           item

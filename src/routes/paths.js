@@ -21,4 +21,5 @@ export const PATH_SITE = {
   contact: "/contact-us",
   about: "/about-us",
   cart: "/cart",
+  customDesign: "/custom-design",
 };

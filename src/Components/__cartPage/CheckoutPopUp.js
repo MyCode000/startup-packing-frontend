@@ -148,8 +148,6 @@ function CheckuotPopUp({ isTriggered, closeHandler, cartData, updateHandler }) {
     [setFieldValue]
   );
 
-  console.log(values.payment_image);
-
   return (
     <Dialog
       open={isTriggered}
@@ -259,7 +257,6 @@ function CheckuotPopUp({ isTriggered, closeHandler, cartData, updateHandler }) {
                       mx: "auto",
                       display: "block",
                       textAlign: "center",
-                      color: "text.secondary",
                     }}
                   >
                     Allowed *.jpeg, *.jpg, *.png, *.gif

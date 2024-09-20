@@ -2,10 +2,36 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 //assets
 import customImage from "../../assets/images/HomePage/customImage.jpg";
+//react
+import { useCallback } from "react";
+//react-router-dom
+import { useNavigate } from "react-router-dom";
+//path
+import { PATH_AUTH, PATH_SITE } from "../../routes/paths";
+//recoil
+import { useSetRecoilState } from "recoil";
+import alertAtom from "../../recoil/atoms/alertAtom";
 
 //-------------------------------------------------------
 
 function CustomDesign() {
+  const triggerAlert = useSetRecoilState(alertAtom);
+
+  const navigate = useNavigate();
+
+  const openCustomDesignPage = useCallback(async () => {
+    if (localStorage.getItem("access_token")) {
+      navigate(PATH_SITE.customDesign);
+    } else {
+      triggerAlert({
+        isOpen: true,
+        isSuccess: false,
+        message: "You should Login",
+      });
+      navigate(PATH_AUTH.login);
+    }
+  }, []);
+
   return (
     <Box sx={{ my: 5 }}>
       <Typography
@@ -42,7 +68,11 @@ function CustomDesign() {
             packaging stand out!
           </Typography>
           <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-            <Button variant="contained" sx={{ width: 300 }}>
+            <Button
+              onClick={openCustomDesignPage}
+              variant="contained"
+              sx={{ width: 300 }}
+            >
               Get Started
             </Button>
           </Box>
