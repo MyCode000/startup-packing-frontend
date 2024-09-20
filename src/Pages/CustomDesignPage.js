@@ -27,6 +27,12 @@ import { PATH_SITE } from "../routes/paths";
 import { createCustomDesignRequest } from "../__api__/customDesign";
 // Components
 import CustomShape3D from "../Components/__customDesignPage/CustomShape3D";
+//assets
+import creative from "../assets/Animation/creative.json";
+//lottie
+import Lottie from "lottie-react";
+
+//---------------------------------------------------------------------
 
 const shapes = [
   { value: "triangle", label: "Triangle" },
@@ -230,20 +236,23 @@ function CustomDesignPage() {
           xs={12}
           md={6}
           sx={{
-            height: 500,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <CustomShape3D
-            shape={values.shape}
-            color={color}
-            width={values.width}
-            height={values.height}
-            length={values.length}
-            logo={logoDataUri}
-          />
+          {touched?.shape ? (
+            <CustomShape3D
+              shape={values.shape}
+              color={color}
+              width={values.width}
+              height={values.height}
+              length={values.length}
+              logo={logoDataUri}
+            />
+          ) : (
+            <Lottie animationData={creative} style={{ width: "80%" }} />
+          )}
         </Grid>
       </Grid>
     </Box>

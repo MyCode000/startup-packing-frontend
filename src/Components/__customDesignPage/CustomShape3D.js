@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
+
 function Shape({ shape, color, width, height, length, logo }) {
   const geometry = useMemo(() => {
     const w = parseFloat(width) || 1;
@@ -35,14 +36,23 @@ function Shape({ shape, color, width, height, length, logo }) {
     }
   }, [shape, width, height, length]);
 
-  // Use `THREE.TextureLoader` to load the texture if a logo is uploaded
   const material = useMemo(() => {
     if (logo) {
       const textureLoader = new THREE.TextureLoader();
-      const texture = textureLoader.load(logo); // Use the uploaded logo as the texture
-      return new THREE.MeshStandardMaterial({ map: texture });
+      const texture = textureLoader.load(logo);
+      return new THREE.MeshStandardMaterial({
+        map: texture,
+        transparent: true,
+        opacity: 1,
+      });
     } else {
-      return new THREE.MeshStandardMaterial({ color });
+      return new THREE.MeshStandardMaterial({
+        color: new THREE.Color(color),
+        metalness: 0.5, // Add metalness for better reflection
+        roughness: 0.5, // Control the roughness
+        transparent: true,
+        opacity: 1,
+      });
     }
   }, [logo, color]);
 
@@ -52,15 +62,16 @@ function Shape({ shape, color, width, height, length, logo }) {
 function CustomShape3D({ shape, color, width, height, length, logo }) {
   return (
     <Canvas camera={{ position: [5, 5, 5] }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
+      <ambientLight intensity={4} /> {/* Increase ambient light intensity */}
+      <pointLight position={[10, 10, 10]} intensity={1.0} />{" "}
+      {/* Add point light */}
       <Shape
         shape={shape}
         color={color}
         width={width}
         height={height}
         length={length}
-        logo={logo} // Pass the uploaded logo to the Shape component
+        logo={logo}
       />
       <OrbitControls />
     </Canvas>
