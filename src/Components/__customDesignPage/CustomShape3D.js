@@ -97,7 +97,7 @@ function Shape({ shape, color, width, height, length, logo }) {
 function CustomShape3D({ shape, color, width, height, length, logo }) {
   return (
     <Canvas camera={{ position: [5, 5, 5] }}>
-      <ambientLight intensity={3} />
+      <ambientLight intensity={5} />
       <pointLight position={[10, 10, 10]} intensity={1.0} />
       <Shape
         shape={shape}
