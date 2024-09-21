@@ -1,9 +1,46 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 
+const createLogoWithBackground = (logo, color) => {
+  return new Promise((resolve) => {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const img = new Image();
+    img.src = logo;
+    img.onload = () => {
+      // Set canvas size to match the image
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Draw the background color
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Draw the logo on top
+      ctx.drawImage(img, 0, 0);
+
+      // Convert the canvas to a data URL and resolve the promise
+      resolve(canvas.toDataURL());
+    };
+  });
+};
+
 function Shape({ shape, color, width, height, length, logo }) {
+  const [texture, setTexture] = useState(null);
+
+  useEffect(() => {
+    if (logo) {
+      createLogoWithBackground(logo, color).then((combinedLogo) => {
+        const textureLoader = new THREE.TextureLoader();
+        const loadedTexture = textureLoader.load(combinedLogo);
+        setTexture(loadedTexture);
+      });
+    }
+  }, [logo, color]);
+
   const geometry = useMemo(() => {
     const w = parseFloat(width) || 1;
     const h = parseFloat(height) || 1;
@@ -37,9 +74,7 @@ function Shape({ shape, color, width, height, length, logo }) {
   }, [shape, width, height, length]);
 
   const material = useMemo(() => {
-    if (logo) {
-      const textureLoader = new THREE.TextureLoader();
-      const texture = textureLoader.load(logo);
+    if (texture) {
       return new THREE.MeshStandardMaterial({
         map: texture,
         transparent: true,
@@ -48,13 +83,13 @@ function Shape({ shape, color, width, height, length, logo }) {
     } else {
       return new THREE.MeshStandardMaterial({
         color: new THREE.Color(color),
-        metalness: 0.5, // Add metalness for better reflection
-        roughness: 0.5, // Control the roughness
+        metalness: 0.5,
+        roughness: 0.5,
         transparent: true,
         opacity: 1,
       });
     }
-  }, [logo, color]);
+  }, [texture, color]);
 
   return <mesh geometry={geometry} material={material} />;
 }
@@ -62,9 +97,8 @@ function Shape({ shape, color, width, height, length, logo }) {
 function CustomShape3D({ shape, color, width, height, length, logo }) {
   return (
     <Canvas camera={{ position: [5, 5, 5] }}>
-      <ambientLight intensity={4} /> {/* Increase ambient light intensity */}
-      <pointLight position={[10, 10, 10]} intensity={1.0} />{" "}
-      {/* Add point light */}
+      <ambientLight intensity={3} />
+      <pointLight position={[10, 10, 10]} intensity={1.0} />
       <Shape
         shape={shape}
         color={color}
