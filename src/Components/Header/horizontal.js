@@ -92,6 +92,7 @@ function HorizontalNavbar({ navLinks, user, logout }) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          cursor: "default",
         }}
       >
         <Avatar src={companyLogo} />
