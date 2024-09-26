@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
     libffi-dev \
     python3-dev \
     cargo \
-    libjpeg-dev \       # For Pillow
-    zlib1g-dev          # For Pillow
+    libjpeg-dev \       
+    zlib1g-dev          
 
 # Copy the current directory contents into the container at /app
 COPY . .
