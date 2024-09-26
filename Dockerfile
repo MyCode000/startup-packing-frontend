@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
 COPY . .
 
 # Install dependencies directly without creating a virtual environment
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+
+RUN pip install requirements.txt
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
