@@ -6,13 +6,21 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libpq-dev build-essential libssl-dev libffi-dev python3-dev cargo
+    libpq-dev \
+    build-essential \
+    libssl-dev \
+    libffi-dev \
+    python3-dev \
+    cargo \
+    libjpeg-dev \       # For Pillow
+    zlib1g-dev          # For Pillow
 
 # Copy the current directory contents into the container at /app
 COPY . .
 
 # Install dependencies directly without creating a virtual environment
-RUN pip install --no-cache-dir -r requirements.txt 
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
