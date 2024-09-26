@@ -1,4 +1,3 @@
-"use client";
 import axios from "axios";
 
 // https://startup-packing-c4817.up.railway.app  // http://127.0.0.1:8000
