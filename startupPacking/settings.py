@@ -39,7 +39,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "hhttps://startup-packing-c4817.up.railway.app",
+    "https://startup-packing-c4817.up.railway.app",
 ]
 
 
