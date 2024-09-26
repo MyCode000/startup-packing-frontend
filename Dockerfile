@@ -11,10 +11,8 @@ RUN apt-get update && apt-get install -y \
 # Copy the current directory contents into the container at /app
 COPY . .
 
-# Create a virtual environment and install dependencies
-RUN python -m venv venv && \
-    . venv/bin/activate && \
-    pip install --upgrade pip && \
+# Install dependencies directly without creating a virtual environment
+RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # Collect static files
