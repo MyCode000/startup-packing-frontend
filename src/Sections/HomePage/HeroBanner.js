@@ -15,7 +15,7 @@ function HeroBanner() {
   return (
     <Box
       sx={{
-        mt: 10,
+        mt: { xs: 2, md: 10 },
         mb: 5,
         px: 2,
         height: "100vh", // Set the height of the banner

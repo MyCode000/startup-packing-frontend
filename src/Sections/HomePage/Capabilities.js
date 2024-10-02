@@ -16,7 +16,7 @@ function Capabilities() {
         sx={{
           textAlign: "center",
           mb: { xs: 2, md: 3 },
-          fontSize: { xs: "3rem", sm: "4rem", md: "6rem" }, // h3-like size for xs, h1-like for md
+          fontSize: { xs: "2.5rem", sm: "4rem", md: "6rem" }, // h3-like size for xs, h1-like for md
           fontWeight: "bold", // Adjust font weight as per your h1/h3 styling
         }}
       >

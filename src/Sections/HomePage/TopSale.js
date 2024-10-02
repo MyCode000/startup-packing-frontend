@@ -32,15 +32,15 @@ function TopSale({ isDetails }) {
   }, []);
 
   return (
-    <Box sx={{ my: 10, px: { xs: 2, md: 5 } }}>
+    <Box sx={{ my: { xs: 2, md: 10 }, px: { xs: 2, md: 5 } }}>
       {isDetails ? (
         <Typography variant="h4">You can also buy from our best</Typography>
       ) : (
         <Typography
           sx={{
             textAlign: "center",
-            mb: { xs: 2, md: 3 },
-            fontSize: { xs: "3rem", sm: "4rem", md: "6rem" }, // h3-like size for xs, h1-like for md
+            mb: { xs: 0, md: 3 },
+            fontSize: { xs: "2.5rem", sm: "4rem", md: "6rem" }, // h3-like size for xs, h1-like for md
             fontWeight: "bold", // Adjust font weight as per your h1/h3 styling
           }}
         >
