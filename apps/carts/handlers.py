@@ -16,6 +16,15 @@ def cart_handler(request):
     return Response(status=status.HTTP_200_OK, data=serializer.data)
 
 
+@api_view(["GET"])
+def all_cart_handler(request):
+
+    cart = models.Cart.objects.all()
+    serializer = serializers.CartSerializer(cart)
+
+    return Response(status=status.HTTP_200_OK, data=serializer.data)
+
+
 @api_view(["POST"])
 def add_to_cart(request):
     user = request.user

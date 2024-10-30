@@ -69,6 +69,8 @@ INSTALLED_APPS = [
     "orders",
     "mails",
     "customDesign",
+    "passwords",
+    "sales",
 ]
 
 MIDDLEWARE = [

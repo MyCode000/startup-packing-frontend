@@ -8,6 +8,7 @@ class Mail(models.Model):
     email = models.EmailField(verbose_name="Email")
     phone_number = models.CharField(max_length=100, verbose_name="Phone number")
     message = models.TextField(verbose_name="Message")
+    isRead = models.BooleanField(verbose_name="Is Read", default=False)
 
     timestamp = models.DateTimeField(
         null=True, auto_now_add=True, verbose_name="Timestamp"

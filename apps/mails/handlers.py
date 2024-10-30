@@ -28,3 +28,31 @@ def send_mail(request):
         status=status.HTTP_201_CREATED,
         data={"message": "email sent succeffully"},
     )
+
+
+@api_view(["GET"])
+def mail_handler(request):
+
+    mails = models.Mail.objects.all()
+    serializer = serializers.MailSerializer(mails, many=True)
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["PUT"])
+def read_mail(request):
+    mail_id = request.data.get("mail_id")
+
+    mail = models.Mail.objects.get(id=mail_id)
+    mail.isRead = True
+    mail.save()
+
+    return Response(data={"message": "You read the mail"}, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+def unread_mail_count(request):
+
+    unread_count = models.Mail.objects.filter(isRead=False).count()
+
+    return Response(status=status.HTTP_200_OK, data={"unread_mail_count": unread_count})
