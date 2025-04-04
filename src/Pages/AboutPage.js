@@ -1,5 +1,10 @@
 import { Box, Typography, Grid, Button, Paper } from "@mui/material";
 import { PATH_SITE } from "../routes/paths";
+//__font__
+
+import "@fontsource/poppins";
+import "@fontsource/akaya-kanadaka"; // Font import for styling
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 function AboutPage() {
   return (
@@ -18,7 +23,7 @@ function AboutPage() {
           textAlign: "center",
         }}
       >
-        <Box sx={{ bgcolor: "rgba(0, 0, 0, 0.5)", p: 4 }}>
+        <Box sx={{ bgcolor: "#aa647b", p: 4,  fontFamily: "'Akaya Kanadaka', sans-serif", }}>
           <Typography variant="h3" gutterBottom>
             About Us
           </Typography>
@@ -31,13 +36,13 @@ function AboutPage() {
 
       {/* Introduction Section */}
       <Box sx={{ mt: 5, textAlign: "center" }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom sx={{fontFamily: "'Akaya Kanadaka', sans-serif",}}>
           Who We Are
         </Typography>
         <Typography
           variant="body1"
           color="textSecondary"
-          sx={{ maxWidth: "600px", mx: "auto" }}
+          sx={{ maxWidth: "600px", mx: "auto", fontFamily: "'Akaya Kanadaka', sans-serif",}}
         >
           We started with a vision to change the industry by creating innovative
           solutions. Over the years, our team has grown, and so have our goals.
@@ -48,13 +53,13 @@ function AboutPage() {
 
       {/* Features Section */}
       <Box sx={{ mt: 8 }}>
-        <Typography variant="h4" align="center" gutterBottom>
+        <Typography variant="h4" align="center" gutterBottom sx={{fontFamily: "'Akaya Kanadaka', sans-serif",}}>
           What We Offer
         </Typography>
         <Grid container spacing={4} sx={{ mt: 2 }}>
           <Grid item xs={12} md={4}>
             <Paper elevation={3} sx={{ p: 4, textAlign: "center" }}>
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom sx={{fontFamily: "'Akaya Kanadaka', sans-serif",}}>
                 Innovative Solutions
               </Typography>
               <Typography variant="body2" color="textSecondary">
@@ -65,7 +70,7 @@ function AboutPage() {
           </Grid>
           <Grid item xs={12} md={4}>
             <Paper elevation={3} sx={{ p: 4, textAlign: "center" }}>
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom sx={{fontFamily: "'Akaya Kanadaka', sans-serif",}}>
                 Customer Focused
               </Typography>
               <Typography variant="body2" color="textSecondary">
@@ -79,7 +84,7 @@ function AboutPage() {
               <Typography variant="h5" gutterBottom>
                 Industry Expertise
               </Typography>
-              <Typography variant="body2" color="textSecondary">
+              <Typography variant="body2" color="textSecondary" sx={{fontFamily: "'Akaya Kanadaka', sans-serif",}}>
                 With years of experience, we have become leaders in the
                 industry, providing high-quality products.
               </Typography>
@@ -90,7 +95,7 @@ function AboutPage() {
 
       {/* Call to Action Section */}
       <Box sx={{ mt: 8, textAlign: "center" }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom sx={{fontFamily: "'Akaya Kanadaka', sans-serif",}}>
           Ready to Collaborate?
         </Typography>
         <Typography variant="body1" color="textSecondary">
