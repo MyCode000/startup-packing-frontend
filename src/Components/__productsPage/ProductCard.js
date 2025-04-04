@@ -76,7 +76,7 @@ function ProductCard({ product }) {
       <Box
         onClick={handleClick}
         component="img"
-        src={product.images[0].image}
+        src={product.images[0].image.replace("image/upload/", "")}
         sx={{
           width: "90%",
           borderRadius: 10,

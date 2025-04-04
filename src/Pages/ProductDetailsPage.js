@@ -78,7 +78,7 @@ function ProductDetailsPage() {
           </IconButton>
           <Box sx={{ position: "relative", width: "300px", height: "300px" }}>
             <img
-              src={product.images[currentImageIndex].image}
+              src={product.images[currentImageIndex].image.replace("image/upload/", "")}
               alt={product.name}
               style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />

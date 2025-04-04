@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // https://startup-packing-c4817.up.railway.app  // http://127.0.0.1:8000
-export const mainUrl = "https://startup-packing-c4817.up.railway.app";
+export const mainUrl = "https://startup-packing-2a88.up.railway.app/";
 
 // Function to create axios instance with necessary headers
 const createAxiosInstance = () => {
